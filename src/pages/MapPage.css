@@ -1,0 +1,1340 @@
+
+/* =========================================================
+   HUESMART TRAVEL — INTERACTIVE MAP
+   Premium map UI | React + Leaflet | Responsive
+   Áp dụng cho các class hs-map-* trong MapPage.tsx
+========================================================= */
+
+/* ---------- 1. BIẾN GIAO DIỆN VÀ KHUNG TRANG ---------- */
+
+.hs-map-page {
+  --hs-map-green: #075b48;
+  --hs-map-green-dark: #073e34;
+  --hs-map-green-light: #eaf5ef;
+  --hs-map-gold: #c9912e;
+  --hs-map-ink: #203b3b;
+  --hs-map-muted: #71817f;
+  --hs-map-border: #e4ebe7;
+  --hs-map-white: #ffffff;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  padding: 0 0 36px;
+  overflow: clip;
+  background:
+    radial-gradient(
+      ellipse at 10% 35%,
+      rgba(220, 241, 232, 0.35),
+      transparent 42%
+    ),
+    #fff;
+  color: var(--hs-map-ink);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hs-map-page *,
+.hs-map-page *::before,
+.hs-map-page *::after {
+  box-sizing: border-box;
+}
+
+.hs-map-page button,
+.hs-map-page input {
+  font-family: inherit;
+}
+
+.hs-map-page button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hs-map-page button:focus-visible,
+.hs-map-page a:focus-visible,
+.hs-map-page input:focus-visible {
+  outline: 3px solid rgba(201, 145, 46, 0.45);
+  outline-offset: 3px;
+}
+
+/* ---------- 2. BANNER ĐẦU TRANG ---------- */
+
+.hs-map-hero {
+  position: relative;
+  display: flex;
+  min-height: 205px;
+  align-items: center;
+  overflow: hidden;
+  background: #edf5f3;
+}
+
+.hs-map-hero-image {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.97) 0%,
+      rgba(255, 255, 255, 0.88) 29%,
+      rgba(255, 255, 255, 0.48) 53%,
+      rgba(255, 255, 255, 0.08) 100%
+    ),
+    url("https://images.unsplash.com/photo-1599708153386-62bf1f4f6f2b?auto=format&fit=crop&w=2000&q=90");
+  background-position: center, center 48%;
+  background-size: cover;
+  transform: scale(1.01);
+}
+
+.hs-map-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1500px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 31px 0 35px;
+}
+
+.hs-map-hero-copy {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 800px;
+}
+
+.hs-map-pin-heading {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 5px;
+  color: var(--hs-map-gold);
+}
+
+.hs-map-eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #a87925;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.hs-map-hero h1 {
+  margin: 0;
+  color: #203c42;
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+
+.hs-map-hero h1 span {
+  color: var(--hs-map-green);
+  font-size: 0.72em;
+  letter-spacing: -0.3px;
+}
+
+.hs-map-hero p {
+  max-width: 620px;
+  margin: 12px 0 0;
+  color: #465b60;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---------- 3. KHUNG TÌM KIẾM NỔI ---------- */
+
+.hs-map-search-panel {
+  position: relative;
+  z-index: 5;
+  width: min(1380px, calc(100% - 64px));
+  margin: -24px auto 0;
+  padding: 17px 24px 15px;
+  border: 1px solid rgba(230, 236, 233, 0.95);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow:
+    0 12px 38px rgba(28, 67, 57, 0.09),
+    0 2px 8px rgba(28, 67, 57, 0.035);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.hs-map-search-form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+
+.hs-map-search-input {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid #e9efed;
+  border-radius: 17px;
+  background: #fff;
+  color: var(--hs-map-green-dark);
+  box-shadow: 0 2px 10px rgba(30, 61, 54, 0.055);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hs-map-search-input:focus-within {
+  border-color: #83b7a6;
+  box-shadow: 0 0 0 4px rgba(7, 91, 72, 0.075);
+}
+
+.hs-map-search-input > svg {
+  flex-shrink: 0;
+}
+
+.hs-map-search-input input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  color: var(--hs-map-ink);
+  font-size: 14px;
+  line-height: normal;
+}
+
+.hs-map-search-input input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.hs-map-search-input input::placeholder {
+  color: #8b9aa7;
+}
+
+.hs-map-clear {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f5f2;
+  color: #5b716a;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.hs-map-clear:hover {
+  background: #e1eee7;
+  color: var(--hs-map-green);
+}
+
+.hs-map-search-button {
+  display: inline-flex;
+  min-width: 145px;
+  height: 48px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--hs-map-green);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hs-map-search-button:hover {
+  transform: translateY(-1px);
+  background: var(--hs-map-green-dark);
+  box-shadow: 0 6px 15px rgba(7, 91, 72, 0.16);
+}
+
+/* ---------- 4. NÚT LỌC DANH MỤC ---------- */
+
+.hs-map-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.hs-map-category {
+  display: inline-flex;
+  min-height: 38px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 15px;
+  border: 1px solid #dce5e4;
+  border-radius: 999px;
+  background: #fff;
+  color: #344c4e;
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hs-map-category:hover {
+  transform: translateY(-1px);
+  border-color: #8cb6a8;
+  color: var(--hs-map-green);
+}
+
+.hs-map-category.active {
+  border-color: var(--hs-map-green);
+  background: var(--hs-map-green);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(7, 91, 72, 0.15);
+}
+
+.hs-map-category.active:hover {
+  background: var(--hs-map-green-dark);
+}
+
+.hs-map-category svg {
+  flex-shrink: 0;
+}
+
+/* ---------- 5. SỐ LƯỢNG VÀ ĐỊA ĐIỂM GỢI Ý ---------- */
+
+.hs-map-discovery-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.hs-map-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--hs-map-green);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.hs-map-count strong {
+  font-weight: 800;
+}
+
+.hs-map-discovery-divider {
+  width: 1px;
+  height: 24px;
+  flex-shrink: 0;
+  margin: 0 8px;
+  background: #d9e2de;
+}
+
+.hs-map-discovery-label {
+  color: #536365;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hs-map-quick-list {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.hs-map-quick-chip {
+  display: inline-block;
+  max-width: 180px;
+  overflow: hidden;
+  padding: 7px 12px;
+  border: 1px solid #dbe4e3;
+  border-radius: 999px;
+  background: #fff;
+  color: #34464d;
+  font-size: 12px;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hs-map-quick-chip:hover,
+.hs-map-quick-chip.active {
+  border-color: var(--hs-map-green);
+  background: var(--hs-map-green);
+  color: #fff;
+}
+
+.hs-map-no-results {
+  color: #87938f;
+  font-size: 12px;
+}
+
+/* ---------- 6. KHUNG BẢN ĐỒ VÀ THẺ CHI TIẾT ---------- */
+
+.hs-map-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: stretch;
+  gap: 8px;
+  width: min(1520px, calc(100% - 64px));
+  margin: 7px auto 0;
+}
+
+.hs-map-canvas {
+  position: relative;
+  min-width: 0;
+  height: clamp(460px, 49vw, 570px);
+  overflow: hidden;
+  border: 3px solid #d7f0e7;
+  border-radius: 21px;
+  background: #e7f0e9;
+  box-shadow:
+    0 10px 28px rgba(20, 78, 60, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.hs-map-leaflet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  background: #e7f0e9;
+}
+
+/* Đảm bảo bản đồ hiển thị đúng kích thước */
+
+.hs-map-leaflet.leaflet-container {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: #e7f0e9;
+}
+
+.hs-map-leaflet img {
+  max-width: none;
+}
+
+.hs-map-leaflet .leaflet-control-container {
+  font-family: Arial, sans-serif;
+}
+
+.hs-map-leaflet .leaflet-control-zoom {
+  margin-top: 13px;
+  margin-left: 13px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 11px;
+  box-shadow: 0 3px 14px rgba(24, 59, 49, 0.17);
+}
+
+.hs-map-leaflet .leaflet-control-zoom a {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  color: #183f36;
+  font-size: 21px;
+  line-height: 36px;
+}
+
+.hs-map-leaflet .leaflet-control-zoom a:hover {
+  background: #edf8f3;
+  color: var(--hs-map-green);
+}
+
+.hs-map-leaflet .leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.hs-map-leaflet .leaflet-control-attribution a {
+  color: #087eaa;
+}
+
+/* Nút đưa bản đồ về trung tâm Huế */
+
+.hs-map-locate {
+  position: absolute;
+  z-index: 1000;
+  top: 98px;
+  left: 13px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 11px;
+  background: #fff;
+  color: var(--hs-map-green);
+  box-shadow: 0 3px 14px rgba(24, 59, 49, 0.17);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hs-map-locate:hover {
+  transform: translateY(-1px);
+  background: #edf8f3;
+}
+
+/* Chú thích màu danh mục */
+
+.hs-map-legend {
+  position: absolute;
+  z-index: 500;
+  bottom: 14px;
+  left: 13px;
+  display: flex;
+  max-width: calc(100% - 26px);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 13px;
+  border: 1px solid rgba(235, 242, 239, 0.85);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 3px 15px rgba(20, 65, 50, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hs-map-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #344e4a;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hs-map-legend i {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  font-style: normal;
+}
+
+.hs-map-legend i svg {
+  display: block;
+}
+
+/* Chú thích dữ liệu bản đồ */
+
+.hs-map-attribution {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  padding: 4px 7px;
+  border-radius: 5px 0 0 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #667b77;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+/* ---------- 7. THẺ THÔNG TIN ĐỊA ĐIỂM ---------- */
+
+.hs-map-detail-panel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-self: stretch;
+  overflow: hidden;
+  border: 2px solid #d5eae7;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 9px 26px rgba(23, 73, 57, 0.09);
+}
+
+.hs-map-detail-heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 13px 14px;
+}
+
+.hs-map-detail-title-icon {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  place-items: center;
+  color: var(--hs-map-green);
+}
+
+.hs-map-detail-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.hs-map-detail-title > span {
+  display: block;
+  margin-bottom: 3px;
+  color: #9b782f;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.hs-map-detail-title h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--hs-map-green);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.hs-map-next-place {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--hs-map-green);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hs-map-next-place:hover:not(:disabled) {
+  transform: translateX(2px);
+  background: #edf6f1;
+}
+
+.hs-map-next-place:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Ảnh địa điểm */
+
+.hs-map-detail-image-wrap {
+  position: relative;
+  height: 170px;
+  flex-shrink: 0;
+  margin: 0 12px;
+  overflow: hidden;
+  border-radius: 11px;
+  background: #edf3ef;
+}
+
+.hs-map-detail-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.hs-map-detail-image-wrap:hover .hs-map-detail-image {
+  transform: scale(1.04);
+}
+
+.hs-map-image-badge {
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--hs-map-green);
+  font-size: 10px;
+  font-weight: 750;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Mô tả địa điểm */
+
+.hs-map-detail-description {
+  display: -webkit-box;
+  margin: 12px 14px 10px;
+  overflow: hidden;
+  color: #53666a;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* Địa chỉ */
+
+.hs-map-detail-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 14px;
+  color: #53666a;
+  font-size: 12px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.hs-map-detail-address svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--hs-map-green);
+}
+
+/* Đánh giá và thời gian */
+
+.hs-map-detail-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 9px;
+  margin: 14px 12px 0;
+}
+
+.hs-map-detail-meta > div {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 7px;
+  border: 1px solid #edf1ee;
+  border-radius: 10px;
+  background: #fbfcfb;
+}
+
+.hs-map-meta-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 8px;
+  background: #eaf4ed;
+  color: var(--hs-map-green);
+}
+
+.hs-map-detail-meta > div > span:last-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hs-map-detail-meta small {
+  color: #83908b;
+  font-size: 10px;
+}
+
+.hs-map-detail-meta strong {
+  color: #304944;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+/* Giá tham khảo */
+
+.hs-map-detail-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 14px 0;
+  padding: 10px 0;
+  border-top: 1px solid #edf1ee;
+  color: #65736f;
+  font-size: 11px;
+}
+
+.hs-map-detail-price > svg {
+  flex-shrink: 0;
+  color: var(--hs-map-gold);
+}
+
+.hs-map-detail-price strong {
+  margin-left: auto;
+  color: var(--hs-map-green);
+  font-size: 12px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* Nút chi tiết và chỉ đường */
+
+.hs-map-detail-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin: auto 12px 13px;
+  padding-top: 8px;
+}
+
+.hs-map-detail-link,
+.hs-map-directions {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 39px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hs-map-detail-link {
+  border: 1px solid #d7e7df;
+  background: #f2f8f4;
+  color: var(--hs-map-green);
+}
+
+.hs-map-directions {
+  border: 1px solid var(--hs-map-green);
+  background: var(--hs-map-green);
+  color: #fff;
+}
+
+.hs-map-detail-link svg,
+.hs-map-directions svg {
+  flex-shrink: 0;
+}
+
+.hs-map-detail-link:hover,
+.hs-map-directions:hover {
+  transform: translateY(-1px);
+}
+
+.hs-map-detail-link:hover {
+  background: #e3f2e8;
+}
+
+.hs-map-directions:hover {
+  background: var(--hs-map-green-dark);
+}
+
+/* Trạng thái không có địa điểm */
+
+.hs-map-empty-detail {
+  display: flex;
+  min-height: 340px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+}
+
+.hs-map-empty-detail > span {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf6f1;
+  color: var(--hs-map-green);
+}
+
+.hs-map-empty-detail h3 {
+  margin: 16px 0 8px;
+  color: var(--hs-map-green-dark);
+  font-size: 17px;
+}
+
+.hs-map-empty-detail p {
+  color: var(--hs-map-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.hs-map-empty-detail button {
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--hs-map-green);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hs-map-empty-detail button:hover {
+  background: var(--hs-map-green-dark);
+}
+
+/* ---------- 8. POPUP TRÊN BẢN ĐỒ ---------- */
+
+.hs-map-leaflet .leaflet-popup-content-wrapper {
+  border-radius: 13px;
+  box-shadow: 0 6px 24px rgba(23, 73, 57, 0.15);
+}
+
+.hs-map-leaflet .leaflet-popup-content {
+  margin: 13px 15px;
+  line-height: 1.5;
+}
+
+.hs-map-leaflet .leaflet-popup-tip {
+  background: #fff;
+}
+
+.hs-map-popup {
+  min-width: 190px;
+  max-width: 250px;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.hs-map-popup > strong {
+  display: block;
+  color: var(--hs-map-green);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.hs-map-popup > span {
+  display: inline-block;
+  margin-top: 4px;
+  color: #a47c2b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hs-map-popup p {
+  margin: 7px 0;
+  color: #596b67;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.hs-map-popup small {
+  color: #788680;
+  font-size: 11px;
+}
+
+.hs-map-popup button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--hs-map-green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hs-map-popup button:hover {
+  background: var(--hs-map-green-dark);
+}
+
+/* ---------- 9. CHÂN TRANG ---------- */
+
+.hs-map-footer {
+  display: flex;
+  width: min(1520px, calc(100% - 64px));
+  align-items: flex-start;
+  gap: 9px;
+  margin: 16px auto 0;
+  color: #82908a;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.hs-map-footer svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--hs-map-green);
+}
+
+/* ---------- 10. TABLET ---------- */
+
+@media (max-width: 1100px) {
+  .hs-map-search-panel {
+    width: calc(100% - 40px);
+    padding: 16px;
+  }
+
+  .hs-map-workspace {
+    grid-template-columns: minmax(0, 1fr) 285px;
+    width: calc(100% - 40px);
+  }
+
+  .hs-map-canvas {
+    height: 500px;
+  }
+
+  .hs-map-detail-image-wrap {
+    height: 150px;
+  }
+
+  .hs-map-hero-inner {
+    width: calc(100% - 40px);
+  }
+
+  .hs-map-footer {
+    width: calc(100% - 40px);
+  }
+
+  .hs-map-quick-list {
+    flex-basis: 100%;
+  }
+
+  .hs-map-discovery-divider {
+    display: none;
+  }
+}
+
+/* ---------- 11. ĐIỆN THOẠI ---------- */
+
+@media (max-width: 760px) {
+  .hs-map-page {
+    padding-bottom: 28px;
+  }
+
+  .hs-map-hero {
+    min-height: 210px;
+  }
+
+  .hs-map-hero-image {
+    background-position: center, 62% center;
+  }
+
+  .hs-map-hero-inner {
+    width: calc(100% - 30px);
+    padding: 28px 0 36px;
+  }
+
+  .hs-map-hero-copy {
+    gap: 10px;
+  }
+
+  .hs-map-pin-heading svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .hs-map-eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+  }
+
+  .hs-map-hero h1 {
+    font-size: clamp(24px, 6vw, 32px);
+    letter-spacing: -0.7px;
+  }
+
+  .hs-map-hero h1 span {
+    font-size: 0.76em;
+    line-height: 1.4;
+  }
+
+  .hs-map-hero p {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .hs-map-search-panel {
+    width: calc(100% - 24px);
+    margin-top: -20px;
+    padding: 13px;
+    border-radius: 18px;
+  }
+
+  .hs-map-search-form {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .hs-map-search-input {
+    height: 43px;
+    gap: 8px;
+    padding: 0 10px;
+    border-radius: 12px;
+  }
+
+  .hs-map-search-input > svg {
+    width: 18px;
+    flex-shrink: 0;
+  }
+
+  .hs-map-search-input input {
+    font-size: 12px;
+  }
+
+  .hs-map-search-button {
+    min-width: 44px;
+    width: 44px;
+    height: 43px;
+    padding: 0;
+    border-radius: 12px;
+  }
+
+  .hs-map-search-button span {
+    display: none;
+  }
+
+  .hs-map-category-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 7px;
+    margin: 12px -2px 0;
+    padding: 0 2px 5px;
+    scrollbar-width: thin;
+  }
+
+  .hs-map-category {
+    min-height: 34px;
+    gap: 6px;
+    padding: 0 11px;
+    font-size: 11px;
+  }
+
+  .hs-map-category svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hs-map-discovery-row {
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .hs-map-count,
+  .hs-map-discovery-label {
+    font-size: 11px;
+  }
+
+  .hs-map-quick-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: thin;
+  }
+
+  .hs-map-quick-chip {
+    max-width: 145px;
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .hs-map-workspace {
+    display: flex;
+    width: calc(100% - 24px);
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .hs-map-canvas {
+    height: 420px;
+    min-height: 420px;
+    border-width: 2px;
+    border-radius: 16px;
+  }
+
+  .hs-map-legend {
+    bottom: 12px;
+    left: 8px;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .hs-map-legend > span {
+    gap: 4px;
+    font-size: 9px;
+  }
+
+  .hs-map-legend i {
+    width: 17px;
+    height: 17px;
+  }
+
+  .hs-map-legend i svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .hs-map-detail-panel {
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .hs-map-detail-heading {
+    padding: 14px 13px;
+  }
+
+  .hs-map-detail-image-wrap {
+    height: 200px;
+    margin: 0 10px;
+  }
+
+  .hs-map-detail-description {
+    margin: 12px 12px 9px;
+    font-size: 12px;
+  }
+
+  .hs-map-detail-address {
+    margin: 0 12px;
+  }
+
+  .hs-map-detail-meta {
+    margin: 12px 10px 0;
+  }
+
+  .hs-map-detail-actions {
+    margin: 0 10px 12px;
+  }
+
+  .hs-map-footer {
+    width: calc(100% - 28px);
+    margin-top: 13px;
+    font-size: 10px;
+  }
+}
+
+/* ---------- 12. MÀN HÌNH RẤT NHỎ ---------- */
+
+@media (max-width: 420px) {
+  .hs-map-hero-copy {
+    gap: 8px;
+  }
+
+  .hs-map-pin-heading svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hs-map-hero h1 {
+    font-size: 23px;
+  }
+
+  .hs-map-hero h1 span {
+    font-size: 0.75em;
+  }
+
+  .hs-map-search-panel {
+    padding: 10px;
+  }
+
+  .hs-map-search-input {
+    gap: 6px;
+    padding: 0 8px;
+  }
+
+  .hs-map-search-input input {
+    font-size: 11px;
+  }
+
+  .hs-map-workspace {
+    width: calc(100% - 20px);
+  }
+
+  .hs-map-canvas {
+    height: 370px;
+    min-height: 370px;
+  }
+
+  .hs-map-legend {
+    gap: 6px;
+    padding: 7px;
+  }
+
+  .hs-map-legend > span {
+    font-size: 8px;
+  }
+
+  .hs-map-detail-meta {
+    gap: 6px;
+  }
+
+  .hs-map-detail-meta > div {
+    gap: 5px;
+    padding: 7px 5px;
+  }
+
+  .hs-map-meta-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .hs-map-detail-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hs-map-detail-link,
+  .hs-map-directions {
+    width: 100%;
+    min-height: 40px;
+  }
+}
+
+/* ---------- 13. HẠN CHẾ CHUYỂN ĐỘNG ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-map-page *,
+  .hs-map-page *::before,
+  .hs-map-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
