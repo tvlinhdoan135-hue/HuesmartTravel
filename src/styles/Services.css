@@ -872,6 +872,51 @@
   }
 }
 
+/* =====================================================
+   NÚT XEM THÊM Ở DƯỚI DANH SÁCH ẨM THỰC
+===================================================== */
+.food-more-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 0 20px;
+}
+
+.food-load-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 28px;
+  border: 1px solid #e2d9ee;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #6d12c5;
+  box-shadow: 0 4px 14px rgba(109, 18, 197, 0.08);
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13.5px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.food-load-more-btn:hover {
+  background: #faf6ff;
+  border-color: #bfa4e3;
+  color: #54109a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(109, 18, 197, 0.15);
+}
+
+.food-more-icon {
+  transition: transform 0.3s ease;
+}
+
+.food-more-icon.rotated {
+  transform: rotate(180deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .food-page *,
   .food-page *::before,
@@ -882,9 +927,6 @@
   }
 }
 
-/* =====================================================
-   HUESMART TRAVEL — SERVICES / FOOD TYPOGRAPHY SYSTEM
-===================================================== */
 /* =====================================================
    HUESMART TRAVEL — SERVICES / FOOD TYPOGRAPHY SYSTEM
 ===================================================== */

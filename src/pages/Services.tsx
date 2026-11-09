@@ -18,6 +18,7 @@ import {
   ArrowRight,
   Sparkles,
   CalendarPlus,
+  ChevronDown,
 } from "lucide-react";
 import { autoScheduleToItinerary } from "../services/itineraryService";
 import "../styles/Services.css";
@@ -579,6 +580,23 @@ export default function Services() {
               );
             })}
           </div>
+
+          {filteredRestaurants.length > 4 && (
+            <div className="food-more-wrap">
+              <button
+                type="button"
+                className="food-load-more-btn"
+                onClick={() => setShowAll((current) => !current)}
+                aria-expanded={showAll}
+              >
+                <span>{showAll ? "Thu gọn" : "Xem thêm"}</span>
+                <ChevronDown
+                  size={17}
+                  className={`food-more-icon ${showAll ? "rotated" : ""}`}
+                />
+              </button>
+            </div>
+          )}
           </>
         ) : (
           <div className="food-empty">
