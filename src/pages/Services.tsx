@@ -374,9 +374,11 @@ export default function Services() {
       <section className="food-hero">
         <div className="food-hero-overlay" />
         <div className="food-hero-content">
-          <span className="food-hero-kicker">Khám phá</span>
+          <span className="food-hero-kicker">
+            <Sparkles size={14} /> Tinh hoa ẩm thực
+          </span>
           <h1>Ẩm thực <span>Huế</span></h1>
-          <p>Tinh hoa ẩm thực Cố đô – Hương vị đậm đà, khó quên</p>
+          <p>Khám phá ẩm thực Cố đô – Hương vị đậm đà, khó quên</p>
 
           <form
             className="food-search"
@@ -501,9 +503,9 @@ export default function Services() {
                       loading="lazy"
                     />
                     <div className="food-rating food-rating-badge">
-                      <Star size={15} fill="#f6b91a" stroke="#f6b91a" />
+                      <Star size={13} fill="#f6b91a" stroke="#f6b91a" />
                       <strong>{restaurant.rating.toFixed(1)}</strong>
-                      <span>({restaurant.reviews.toLocaleString("vi-VN")} lượt đánh giá)</span>
+                      <span>({restaurant.reviews})</span>
                     </div>
                     <button
                       type="button"

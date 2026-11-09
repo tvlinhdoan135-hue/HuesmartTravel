@@ -57,19 +57,23 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: #fff;
-  font-size: clamp(24px, 3vw, 36px);
-  font-style: italic;
-  font-weight: 400;
+  color: #f6c870;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
 .food-hero h1 {
-  margin: -5px 0 0;
+  margin: 0 0 8px;
   color: #fff;
-  font-size: clamp(42px, 5vw, 64px);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(32px, 4.2vw, 48px);
   font-weight: 700;
-  letter-spacing: -1.5px;
-  line-height: 1;
+  letter-spacing: -0.5px;
+  line-height: 1.18;
 }
 
 .food-hero h1 span {
@@ -77,9 +81,13 @@
 }
 
 .food-hero-content > p {
-  margin: 9px 0 18px;
+  margin: 0 0 20px;
   color: rgba(255, 255, 255, 0.92);
+  font-family: "Be Vietnam Pro", sans-serif;
   font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 580px;
 }
 
 .food-search {
@@ -103,8 +111,8 @@
   outline: none;
   background: transparent;
   color: var(--food-ink);
-  font: inherit;
-  font-size: 13px;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 14px;
 }
 
 .food-search input::placeholder {
@@ -176,9 +184,11 @@
 }
 
 .food-eyebrow {
-  color: #3e2155;
-  font-size: 16px;
+  color: #2b1744;
+  font-family: "Playfair Display", "Be Vietnam Pro", serif;
+  font-size: 20px;
   font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .food-heading-actions {
@@ -234,7 +244,7 @@
 
 .food-category-chip {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 38px;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
@@ -245,17 +255,12 @@
   background: #fff;
   box-shadow: 0 3px 10px rgba(58, 34, 100, 0.045);
   color: #393044;
-  font: inherit;
-  font-size: 12px;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .food-category-chip svg {
@@ -291,8 +296,9 @@
   justify-content: space-between;
   gap: 10px;
   margin: -6px 0 14px;
-  color: var(--food-muted);
-  font-size: 12px;
+  color: #6d667a;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13px;
 }
 
 .food-result-line p {
@@ -321,30 +327,32 @@
 }
 
 .food-featured-heading h2 {
-  margin: 0 0 2px;
-  color: #30243c;
-  font-size: 24px;
+  margin: 0 0 3px;
+  color: #241c30;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
   font-weight: 700;
 }
 
 .food-featured-heading p {
   margin: 0;
-  color: #88808c;
-  font-size: 13px;
+  color: #71697d;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13.5px;
 }
 
 .food-featured-heading > button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 13px;
+  padding: 8px 14px;
   border: 1px solid #c6a4dd;
   border-radius: 999px;
   background: transparent;
-  color: #65279a;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 500;
+  color: #6d12c5;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .food-card {
@@ -390,20 +398,20 @@
   top: 10px;
   left: 10px;
   display: inline-flex;
-  max-width: calc(100% - 58px);
   align-items: center;
   gap: 5px;
-  padding: 5px 8px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  padding: 4px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
-  color: #332647;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  color: #2b1f3c;
   margin: 0;
-  font-size: 15px;
-  font-weight: 400;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .food-rating-badge strong {
@@ -447,16 +455,18 @@
 
 .food-card-body h3 {
   display: -webkit-box;
-  min-height: 48px;
-  margin: 0 0 5px;
+  min-height: 44px;
+  margin: 0 0 7px;
   overflow: hidden;
-  color: #201c29;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.3;
+  color: #1f1a29;
+  font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.4;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+  transition: color 0.2s ease;
 }
 
 .food-rating {
@@ -490,12 +500,13 @@
   display: flex;
   min-width: 0;
   align-items: flex-start;
-  gap: 6px;
-  margin: 0 0 4px;
-  color: #4b4654;
-  font-size: 15px;
+  gap: 7px;
+  margin: 0 0 5px;
+  color: #554e60;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
 .food-card-info svg {
@@ -530,9 +541,14 @@
 .food-price {
   display: block;
   min-width: 0;
-  color: #282331;
-  font-size: 18px;
+  color: #6d12c5;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 14.5px;
   font-weight: 700;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .food-detail-button {
@@ -540,16 +556,17 @@
   min-width: 0;
   align-items: center;
   gap: 4px;
-  padding: 6px 11px;
+  padding: 6px 12px;
   border: 0;
   border-radius: 999px;
   background: linear-gradient(110deg, #531581, #7725a8);
   color: white;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 500;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
 .food-detail-button:hover {
@@ -728,12 +745,12 @@
   }
 
   .food-hero-kicker {
-    font-size: 24px;
+    font-size: 11.5px;
   }
 
   .food-hero h1 {
-    font-size: 40px;
-    letter-spacing: -1px;
+    font-size: 28px;
+    letter-spacing: -0.5px;
   }
 
   .food-hero-content > p {
@@ -807,7 +824,7 @@
 
   .food-card-body h3 {
     min-height: 0;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .food-featured-heading {
@@ -825,7 +842,7 @@
   }
 
   .food-card-info {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .food-card-description {
@@ -833,11 +850,11 @@
   }
 
   .food-price {
-    font-size: 18px;
+    font-size: 14.5px;
   }
 
   .food-detail-button {
-    font-size: 15px;
+    font-size: 12.5px;
   }
 
   .food-footer-note {
@@ -856,96 +873,62 @@
   }
 }
 
-#root .food-page,
-#root .food-page * {
-  font-family: "Be Vietnam Pro", Arial, sans-serif;
+/* =====================================================
+   HUESMART TRAVEL — SERVICES / FOOD TYPOGRAPHY SYSTEM
+===================================================== */
+#root .food-page {
+  font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  color: var(--food-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root .food-page .food-hero-kicker,
 #root .food-page .food-hero h1,
 #root .food-page .food-featured-heading h2,
-#root .food-page .food-eyebrow {
+#root .food-page .food-eyebrow,
+#root .food-page .food-empty h3 {
   font-family: "Playfair Display", Georgia, serif;
-  font-weight: 700;
-}
-
-#root .food-page .food-card-body h3 {
-  font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-size: 19px;
-  font-weight: 600;
-}
-
-#root .food-page .food-hero-content > p,
-#root .food-page .food-featured-heading p,
-#root .food-page .food-card-description,
-#root .food-page .food-card-info,
-#root .food-page .food-rating-badge {
-  font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-weight: 400;
-}
-
-#root .food-page .food-card-info,
-#root .food-page .food-rating-badge {
-  font-size: 15px;
-}
-
-#root .food-page .food-price {
-  font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-#root .food-page button,
-#root .food-page .food-detail-button {
-  font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-weight: 600;
-}
-
-#root .food-page .food-hero h1 {
-  font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.25;
 }
 
 #root .food-page .food-card {
   border: 1px solid #eee8f5;
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 4px 14px rgba(48, 20, 75, .07);
-}
-
-#root .food-page .food-card-image-wrap {
-  height: auto;
-  aspect-ratio: 16 / 9;
+  box-shadow: 0 4px 14px rgba(48, 20, 75, 0.07);
 }
 
 #root .food-page .food-card-body h3 {
-  min-height: 50px;
-  color: #24202b;
-  font-size: 19px;
-  font-weight: 600;
+  font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: #1f1a29;
 }
 
 #root .food-page .food-card-info {
-  color: #504a58;
-  font-size: 14px;
-  line-height: 1.5;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #554e60;
 }
 
 #root .food-page .food-price {
-  color: #241a30;
-  font-size: 18px;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 14.5px;
   font-weight: 700;
+  color: #6d12c5;
 }
 
-#root .food-page .food-detail-button {
-  background: #6d12c5;
-  font-size: 14px;
-  font-weight: 600;
+#root .food-page .food-rating-badge {
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 12px;
 }
 
-#root .food-page .food-detail-button:hover {
-  background: #54109a;
+#root .food-page .food-detail-button,
+#root .food-page .btn-itinerary-add,
+#root .food-page .food-search button,
+#root .food-page .food-category-chip,
+#root .food-page .food-location-button {
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
 }
