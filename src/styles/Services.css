@@ -358,11 +358,13 @@
 .food-card {
   min-width: 0;
   overflow: hidden;
-  border: 1px solid #eee5e0;
-  border-radius: 15px;
-  background: #fffdfa;
-  box-shadow: 0 5px 12px rgba(67, 45, 37, 0.09);
+  border: 1px solid #ebe5df;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
   animation: food-rise-in 0.45s ease both;
+  display: flex;
+  flex-direction: column;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -370,159 +372,162 @@
 }
 
 .food-card:hover {
-  transform: translateY(-5px);
-  border-color: #dfd0e7;
-  box-shadow: 0 12px 25px rgba(67, 37, 90, 0.13);
+  transform: translateY(-4px);
+  border-color: #d8cde3;
+  box-shadow: 0 12px 28px rgba(35, 15, 60, 0.09);
 }
 
 .food-card-image-wrap {
   position: relative;
-  height: 150px;
+  height: 160px;
   overflow: hidden;
-  background: #e9e2f4;
+  background: #eee8f5;
 }
 
 .food-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s ease;
+  transition: transform 0.5s ease;
 }
 
 .food-card:hover .food-card-image {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .food-rating-badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 12px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 9px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  gap: 4px;
+  padding: 5px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  color: #2b1f3c;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  color: #111827;
   margin: 0;
   font-family: "Be Vietnam Pro", Arial, sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
 }
 
+.food-rating-badge svg {
+  color: #f59e0b;
+  fill: #f59e0b;
+  width: 13px;
+  height: 13px;
+}
+
 .food-rating-badge strong {
-  color: #342940;
+  color: #111827;
   font-weight: 700;
 }
 
 .food-rating-badge span {
-  color: #68616e;
+  color: #374151;
+  font-weight: 600;
 }
 
-.food-favorite {
+.food-card-actions-top {
   position: absolute;
-  top: 11px;
-  right: 11px;
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  border-radius: 50%;
-  background: rgba(38, 25, 55, 0.20);
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 2;
 }
 
-.food-favorite:hover {
+.food-favorite,
+.food-schedule-btn {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background: rgba(18, 12, 28, 0.45);
+  color: #ffffff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  padding: 0;
+}
+
+.food-favorite:hover,
+.food-schedule-btn:hover {
   transform: scale(1.08);
-  background: rgba(87, 32, 237, 0.9);
+  background: rgba(18, 12, 28, 0.75);
+  border-color: #ffffff;
 }
 
 .food-favorite.selected {
-  background: #8b36ed;
-  color: #fff;
+  background: #e11d48;
+  border-color: #e11d48;
+  color: #ffffff;
+}
+
+.food-schedule-btn:hover {
+  background: #7c22d4;
+  border-color: #7c22d4;
 }
 
 .food-card-body {
-  padding: 10px 12px 8px;
+  padding: 14px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .food-card-body h3 {
   display: -webkit-box;
-  min-height: 44px;
-  margin: 0 0 7px;
+  min-height: 42px;
+  margin: 0 0 8px;
   overflow: hidden;
-  color: #1f1a29;
+  color: #111827;
   font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 650;
-  line-height: 1.4;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.36;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   transition: color 0.2s ease;
 }
 
-.food-rating {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 15px;
-  font-size: 15px;
-  font-weight: 400;
-}
-
-.food-rating svg {
-  flex-shrink: 0;
-}
-
-.food-rating strong {
-  color: #282331;
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-.food-rating span {
-  overflow: hidden;
-  color: #7d7888;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.food-card:hover .food-card-body h3 {
+  color: #7c22d4;
 }
 
 .food-card-info {
   display: flex;
   min-width: 0;
-  align-items: flex-start;
+  align-items: center;
   gap: 7px;
-  margin: 0 0 5px;
-  color: #554e60;
+  margin: 0 0 6px;
+  color: #4b5563;
   font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .food-card-info svg {
   flex-shrink: 0;
   width: 14px;
   height: 14px;
-  margin-top: 2px;
-  color: #604779;
+  color: #6b7280;
 }
 
-.food-card-info span {
-  display: -webkit-box;
+.food-address-text {
+  white-space: nowrap;
   overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  text-overflow: ellipsis;
+  min-width: 0;
+  color: #6b7280;
 }
 
 .food-card-description {
@@ -534,14 +539,15 @@
   min-height: 34px;
   align-items: center;
   justify-content: space-between;
-  gap: 7px;
-  padding-top: 3px;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .food-price {
   display: block;
   min-width: 0;
-  color: #6d12c5;
+  color: #7c22d4;
   font-family: "Be Vietnam Pro", Arial, sans-serif;
   font-size: 14.5px;
   font-weight: 700;
@@ -555,22 +561,25 @@
   display: inline-flex;
   min-width: 0;
   align-items: center;
-  gap: 4px;
-  padding: 6px 12px;
+  gap: 5px;
+  padding: 6px 14px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(110deg, #531581, #7725a8);
-  color: white;
+  background: #fdf2e2;
+  color: #854d0e;
   font-family: "Be Vietnam Pro", Arial, sans-serif;
   font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .food-detail-button:hover {
-  background: #421064;
+  background: #fde6c8;
+  color: #713f12;
+  transform: translateY(-1px);
 }
 
 .food-save-button {
@@ -876,6 +885,9 @@
 /* =====================================================
    HUESMART TRAVEL — SERVICES / FOOD TYPOGRAPHY SYSTEM
 ===================================================== */
+/* =====================================================
+   HUESMART TRAVEL — SERVICES / FOOD TYPOGRAPHY SYSTEM
+===================================================== */
 #root .food-page {
   font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
   color: var(--food-ink);
@@ -891,42 +903,54 @@
 }
 
 #root .food-page .food-card {
-  border: 1px solid #eee8f5;
-  border-radius: 16px;
+  border: 1px solid #ebe5df;
+  border-radius: 20px;
   background: #fff;
-  box-shadow: 0 4px 14px rgba(48, 20, 75, 0.07);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
 }
 
 #root .food-page .food-card-body h3 {
   font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 650;
-  line-height: 1.4;
-  color: #1f1a29;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.36;
+  color: #111827;
 }
 
 #root .food-page .food-card-info {
   font-family: "Be Vietnam Pro", Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 400;
-  line-height: 1.45;
-  color: #554e60;
+  line-height: 1.4;
+  color: #4b5563;
 }
 
 #root .food-page .food-price {
   font-family: "Be Vietnam Pro", Arial, sans-serif;
   font-size: 14.5px;
   font-weight: 700;
-  color: #6d12c5;
+  color: #7c22d4;
 }
 
 #root .food-page .food-rating-badge {
   font-family: "Be Vietnam Pro", Arial, sans-serif;
   font-size: 12px;
+  font-weight: 700;
 }
 
-#root .food-page .food-detail-button,
-#root .food-page .btn-itinerary-add,
+#root .food-page .food-detail-button {
+  background: #fdf2e2;
+  color: #854d0e;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+#root .food-page .food-detail-button:hover {
+  background: #fde6c8;
+  color: #713f12;
+}
+
 #root .food-page .food-search button,
 #root .food-page .food-category-chip,
 #root .food-page .food-location-button {

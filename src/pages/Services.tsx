@@ -503,88 +503,76 @@ export default function Services() {
                       loading="lazy"
                     />
                     <div className="food-rating food-rating-badge">
-                      <Star size={13} fill="#f6b91a" stroke="#f6b91a" />
+                      <Star size={12} fill="#f59e0b" stroke="#f59e0b" />
                       <strong>{restaurant.rating.toFixed(1)}</strong>
                       <span>({restaurant.reviews})</span>
                     </div>
-                    <button
-                      type="button"
-                      className={`food-favorite ${
-                        isFavorite ? "selected" : ""
-                      }`}
-                      onClick={() => toggleFavorite(restaurant.id)}
-                      aria-label={
-                        isFavorite
-                          ? "Bỏ khỏi yêu thích"
-                          : "Thêm vào yêu thích"
-                      }
-                      title={
-                        isFavorite
-                          ? "Bỏ khỏi yêu thích"
-                          : "Thêm vào yêu thích"
-                      }
-                    >
-                      <Heart
-                        size={20}
-                        fill={isFavorite ? "currentColor" : "none"}
-                      />
-                    </button>
+                    <div className="food-card-actions-top">
+                      <button
+                        type="button"
+                        className="food-schedule-btn"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          autoScheduleToItinerary({
+                            id: `food-${restaurant.id}`,
+                            name: restaurant.name,
+                            category: `Ẩm thực / ${restaurant.category}`,
+                            image: restaurant.image,
+                            address: restaurant.address,
+                            price: restaurant.price,
+                            note: `Bữa ăn / Thưởng thức ẩm thực Huế: ${restaurant.name}`,
+                          });
+                        }}
+                        aria-label="Lên lịch vào hành trình"
+                        title="Tự động thêm vào bữa ăn trong lịch trình"
+                      >
+                        <CalendarPlus size={15} />
+                      </button>
+                      <button
+                        type="button"
+                        className={`food-favorite ${
+                          isFavorite ? "selected" : ""
+                        }`}
+                        onClick={() => toggleFavorite(restaurant.id)}
+                        aria-label={
+                          isFavorite
+                            ? "Bỏ khỏi yêu thích"
+                            : "Thêm vào yêu thích"
+                        }
+                        title={
+                          isFavorite
+                            ? "Bỏ khỏi yêu thích"
+                            : "Thêm vào yêu thích"
+                        }
+                      >
+                        <Heart
+                          size={15}
+                          fill={isFavorite ? "currentColor" : "none"}
+                        />
+                      </button>
+                    </div>
                   </div>
 
                   <div className="food-card-body">
                     <h3>{restaurant.name}</h3>
 
                     <p className="food-card-info">
-                      <Clock size={16} />
-                      <span>Giờ mở cửa: {restaurant.hours}</span>
+                      <Clock size={14} />
+                      <span>{restaurant.hours}</span>
                     </p>
                     <p className="food-card-info">
-                      <MapPin size={16} />
-                      <span>Địa chỉ: {restaurant.address}</span>
+                      <MapPin size={14} />
+                      <span className="food-address-text">{restaurant.address}</span>
                     </p>
 
                     <div className="food-card-footer">
                       <span className="food-price">{restaurant.price}</span>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            autoScheduleToItinerary({
-                              id: `food-${restaurant.id}`,
-                              name: restaurant.name,
-                              category: `Ẩm thực / ${restaurant.category}`,
-                              image: restaurant.image,
-                              address: restaurant.address,
-                              price: restaurant.price,
-                              note: `Bữa ăn / Thưởng thức ẩm thực Huế: ${restaurant.name}`,
-                            });
-                          }}
-                          title="Tự động thêm vào bữa ăn trong lịch trình"
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 5,
-                            padding: "6px 12px",
-                            borderRadius: 8,
-                            background: "#fef3c7",
-                            color: "#b45309",
-                            border: "1px solid #fde68a",
-                            fontSize: 12.5,
-                            fontWeight: 600,
-                            cursor: "pointer",
-                          }}
-                        >
-                          <CalendarPlus size={14} />
-                          <span>Lên lịch</span>
-                        </button>
-                        <Link
-                          to={`/services/${restaurant.id}`}
-                          className="food-detail-button"
-                        >
-                          Chi tiết <ArrowRight size={16} />
-                        </Link>
-                      </div>
+                      <Link
+                        to={`/services/${restaurant.id}`}
+                        className="food-detail-button"
+                      >
+                        Chi tiết <ArrowRight size={14} />
+                      </Link>
                     </div>
                   </div>
                 </article>
