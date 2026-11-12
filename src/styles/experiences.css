@@ -106,7 +106,8 @@
 }
 
 .exp-toolbar {
-  max-width: 1200px;
+  max-width: 1550px;
+  width: min(1550px, calc(100% - 16px));
   margin: 0 auto;
   background: #ffffff;
   border-radius: 20px;
@@ -233,11 +234,11 @@
 
 /* Grid Layout */
 .exp-container {
-  max-width: 1400px;
-  width: 100%;
+  max-width: 1550px;
+  width: min(1550px, calc(100% - 16px));
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 40px 24px 80px 24px;
+  padding: 40px 0 80px 0;
 }
 
 .exp-results-header {
@@ -260,27 +261,27 @@
 .exp-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 @media (max-width: 1200px) {
   .exp-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 16px;
   }
 }
 
 @media (max-width: 860px) {
   .exp-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 14px;
   }
 }
 
 @media (max-width: 560px) {
   .exp-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 }
 
@@ -289,35 +290,35 @@
   background: #ffffff;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  border: 1px solid #ebe5df;
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
 }
 
 .exp-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(45, 16, 77, 0.12);
-  border-color: #e9d5ff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(35, 15, 60, 0.09);
+  border-color: #d8cde3;
 }
 
 .exp-card-media {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 220px;
   flex-shrink: 0;
   overflow: hidden;
-  background: #e2e8f0;
+  background: #eee8f5;
 }
 
 .exp-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
 .exp-card:hover .exp-card-img {
@@ -326,8 +327,8 @@
 
 .exp-card-tag {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(8px);
   color: #ffffff;
@@ -340,10 +341,10 @@
 
 .exp-card-fav-btn {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 36px;
-  height: 36px;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(8px);
@@ -359,7 +360,7 @@
 
 .exp-card-fav-btn:hover {
   background: #ffffff;
-  transform: scale(1.1);
+  transform: scale(1.08);
   color: #e11d48;
 }
 
@@ -371,7 +372,7 @@
 .exp-card-duration {
   position: absolute;
   bottom: 12px;
-  left: 14px;
+  left: 12px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
   font-size: 11.5px;
@@ -385,7 +386,7 @@
 }
 
 .exp-card-body {
-  padding: 18px 16px 16px 16px;
+  padding: 18px 18px 16px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -396,7 +397,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 12.5px;
+  font-size: 13px;
 }
 
 .exp-card-rating {
@@ -412,23 +413,23 @@
   align-items: center;
   gap: 4px;
   color: #64748b;
-  font-size: 12px;
+  font-size: 12.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 50%;
+  max-width: 55%;
 }
 
 .exp-card-title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
   color: #1e293b;
   margin: 0 0 8px 0;
   line-height: 1.35;
   cursor: pointer;
   transition: color 0.2s ease;
-  min-height: 48px;
+  min-height: 52px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -440,11 +441,11 @@
 }
 
 .exp-card-desc {
-  font-size: 13px;
+  font-size: 13.5px;
   color: #475569;
-  line-height: 1.5;
-  margin: 0 0 12px 0;
-  min-height: 40px;
+  line-height: 1.55;
+  margin: 0 0 14px 0;
+  min-height: 42px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -454,18 +455,18 @@
 .exp-card-highlights {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 14px;
-  min-height: 26px;
+  gap: 6px;
+  margin-bottom: 16px;
+  min-height: 28px;
 }
 
 .exp-highlight-pill {
-  font-size: 11px;
+  font-size: 11.5px;
   background: #faf5ff;
   color: #7c3aed;
   border: 1px solid #f3e8ff;
   border-radius: 6px;
-  padding: 3px 7px;
+  padding: 3px 8px;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -474,7 +475,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 12px;
+  padding-top: 14px;
   border-top: 1px solid #f1f5f9;
   gap: 8px;
   margin-top: auto;
@@ -487,14 +488,14 @@
 }
 
 .exp-card-price-label {
-  font-size: 10.5px;
+  font-size: 11px;
   color: #94a3b8;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .exp-card-price-val {
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 700;
   color: #047857;
   white-space: nowrap;
@@ -505,16 +506,16 @@
 .exp-card-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .exp-btn-detail {
-  padding: 6px 10px;
+  padding: 7px 12px;
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #334155;
   cursor: pointer;
