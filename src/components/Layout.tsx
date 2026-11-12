@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import AIFloatingBot from "./AIFloatingBot";
 import {
   Menu,
   X,
@@ -221,6 +222,9 @@ export default function Layout() {
       <main>
         <Outlet />
       </main>
+
+      {/* Floating AI Assistant Bot */}
+      <AIFloatingBot />
 
       <footer className="footer">
         <div className="footer-grid">
